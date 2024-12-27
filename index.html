@@ -8,31 +8,153 @@
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-            min-height: 100vh;
         }
         .logo-container {
-            width: 150px;
+            width: 200px;
             height: auto;
         }
-        @keyframes loading-dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60% { content: '...'; }
-            80% { content: '....'; }
-            100% { content: '.....'; }
-        }
-        .loading::after {
-            content: '';
-            animation: loading-dots 1.5s infinite;
+        .countdown-item {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            min-width: 80px;
         }
     </style>
 </head>
-<body class="gradient-bg flex items-center justify-center">
-    <div class="flex items-center space-x-4 p-4">
-        <div class="logo-container">
-            <img src="ProjectDevRushLogo.png" alt="Project Dev Rush" class="w-full h-auto">
-        </div>
-        <div class="text-xl text-gray-600 loading">Loading</div>
+<body class="gradient-bg min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row items-center justify-between mb-12 bg-white rounded-lg shadow-lg p-6">
+            <div class="flex items-center mb-4 md:mb-0">
+                <div class="logo-container">
+                    <img src="/ProjectDevRushLogo.png" alt="Project Dev Rush" class="w-full h-auto">
+                </div>
+                <div class="ml-6">
+                    <h1 class="text-3xl font-bold text-gray-800">Project Dev Rush</h1>
+                    <p class="text-gray-600">January 2nd - January 28th, 2024</p>
+                </div>
+            </div>
+            <a href="https://bit.ly/ProjectDevRush" target="_blank" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Register Now
+            </a>
+        </header>
+
+        <!-- Countdown Section -->
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-center mb-6">Time Until Introduction Session</h2>
+            <div class="flex justify-center space-x-4" id="countdown">
+                <div class="countdown-item">
+                    <div class="text-2xl font-bold" id="days">--</div>
+                    <div class="text-sm text-gray-600">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="text-2xl font-bold" id="hours">--</div>
+                    <div class="text-sm text-gray-600">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="text-2xl font-bold" id="minutes">--</div>
+                    <div class="text-sm text-gray-600">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="text-2xl font-bold" id="seconds">--</div>
+                    <div class="text-sm text-gray-600">Seconds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program Details -->
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-6">How Will Project Dev Rush Be Conducted?</h2>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="text-blue-500 mr-4">1.</div>
+                    <p>Begin with the Introduction Session to select your preferred project track.</p>
+                </div>
+                <div class="flex items-start">
+                    <div class="text-blue-500 mr-4">2.</div>
+                    <p>Attend topic-focused sessions to learn the essentials of your track.</p>
+                </div>
+                <div class="flex items-start">
+                    <div class="text-blue-500 mr-4">3.</div>
+                    <p>Build your project step-by-step with hands-on guidance.</p>
+                </div>
+                <div class="flex items-start">
+                    <div class="text-blue-500 mr-4">4.</div>
+                    <p>Receive mentorship and support whenever needed throughout the journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prerequisites & Setup -->
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-6">Prerequisites & Setup</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Required Tools & Accounts</h3>
+                    <div class="space-y-4">
+                        <a href="https://code.visualstudio.com/download" target="_blank" class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                            <div class="ml-3">
+                                <div class="font-medium">Visual Studio Code</div>
+                                <div class="text-sm text-gray-600">Download and install the code editor</div>
+                            </div>
+                        </a>
+                        <a href="https://nodejs.org/" target="_blank" class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                            <div class="ml-3">
+                                <div class="font-medium">Node.js</div>
+                                <div class="text-sm text-gray-600">Download and install Node.js runtime</div>
+                            </div>
+                        </a>
+                        <a href="https://www.mongodb.com/cloud/atlas/register" target="_blank" class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                            <div class="ml-3">
+                                <div class="font-medium">MongoDB Atlas</div>
+                                <div class="text-sm text-gray-600">Sign up for MongoDB cloud database</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Required Accounts</h3>
+                    <div class="space-y-4">
+                        <a href="https://github.com/signup" target="_blank" class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                            <div class="ml-3">
+                                <div class="font-medium">GitHub Account</div>
+                                <div class="text-sm text-gray-600">For version control and collaboration</div>
+                            </div>
+                        </a>
+                        <a href="https://www.kaggle.com/account/login" target="_blank" class="flex items-center p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                            <div class="ml-3">
+                                <div class="font-medium">Kaggle Account</div>
+                                <div class="text-sm text-gray-600">For ML/AI track participants</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('2025-01-02T19:00:00+05:30').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
