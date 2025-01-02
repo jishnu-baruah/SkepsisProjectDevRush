@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+@layer base {
+  :root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-[#0A0A0A]; /* Dark background */
+    color: theme('colors.gray.100'); /* Light text for dark theme */
+  }
+
+  a {
+    @apply font-medium text-blue-400 no-underline hover:text-blue-300; /* Adjusted for dark theme */
+  }
+
+  h1 {
+    @apply text-4xl leading-tight text-white; /* Ensure headers are visible on dark bg */
+  }
+}
+
+/* Component Styles */
+@layer components {
+  .glass-bg {
+    @apply backdrop-blur-md bg-white/5 border border-white/10; /* More subtle glass effect */
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:scale-[1.02] 
+           hover:bg-white/10 backdrop-blur-sm;
+  }
+
+  .button-glow {
+    @apply relative overflow-hidden transition-all duration-500
+           after:absolute after:inset-0 after:bg-gradient-to-r 
+           after:from-transparent after:via-white/20 after:to-transparent
+           after:-translate-x-[200%] hover:after:translate-x-[200%] 
+           after:transition-transform after:duration-1000;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-blue-900 to-purple-900; /* Darker gradient */
+  }
+
+  .countdown-item {
+    @apply bg-opacity-10 border border-opacity-20 rounded-lg p-4 
+           text-center min-w-[80px] backdrop-blur-sm
+           bg-blue-600/20 border-blue-400/20; /* More subtle countdown items */
+  }
+
+  .collapsible-content {
+    @apply max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out;
+  }
+
+  .collapsible-content.show {
+    @apply max-h-[500px];
+  }
+
+  /* Add new utility classes for dark theme */
+  .dark-card {
+    @apply bg-gray-900/30 border border-gray-700/30 backdrop-blur-sm
+           hover:border-gray-600/50 transition-all duration-300;
+  }
+
+  .dark-gradient {
+    @apply bg-gradient-to-br from-blue-900/20 via-gray-900/40 to-purple-900/20;
+  }
+}
+
+/* Utility Styles */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full hover:bg-gray-600 transition-colors;
+}
