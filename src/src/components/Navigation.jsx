@@ -73,21 +73,23 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <motion.div
         initial={{ opacity: 0, height: 0 }}
         animate={{
           opacity: isOpen ? 1 : 0,
           height: isOpen ? 'auto' : 0
         }}
-        className="md:hidden bg-black/90 backdrop-blur-md"
+        className="md:hidden bg-black/90 backdrop-blur-md fixed top-20 left-0 right-0 z-40"
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
           {['Timeline', 'Projects', 'Setup', 'FAQ'].map((item) => (
-            <a
+               <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              onClick={(event) => handleLinkClick(event, `#${item.toLowerCase()}`)}
+              onClick={(event) => {
+                handleLinkClick(event, `#${item.toLowerCase()}`);
+                setIsOpen(false); // Close the mobile menu when a link is clicked
+              }}
               className="block px-3 py-2 text-white hover:bg-blue-600/20 rounded-md"
             >
               {item}
