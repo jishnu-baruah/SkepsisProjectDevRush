@@ -1,103 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import React, { useState } from 'react';
 
 const Navigation = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleLinkClick = (event, id) => {
     event.preventDefault();
     const element = document.querySelector(id);
-    element.scrollIntoView({ behavior: 'smooth' });
-    setIsOpen(false);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+      setIsOpen(false);
+    }
   };
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
-            <motion.img
-              whileHover={{ scale: 1.05 }}
-              src="/ProjectDevRushLogo.png"
-              alt="Logo"
-              className="h-14 w-auto"
-            />
-            <motion.h1 
-              whileHover={{ scale: 1.05 }}
-              className="ml-4 text-2xl font-bold text-white"
-            >
-              Project Dev Rush
-            </motion.h1>
-          </div>
+    <nav className="bg-gradient-to-r from-gray-900 via-black to-gray-900 fixed top-0 w-full z-50 shadow-lg">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        {/* Logo as a link */}
+        <a
+          href="#hero"
+          onClick={(e) => handleLinkClick(e, '#hero')}
+          className="flex items-center group"
+        >
+          <img
+            src="/ProjectDevRushLogo.png"
+            alt="Logo"
+            className="h-14 w-auto transition-transform duration-300 group-hover:scale-110"
+          />
+          <h1 className="ml-4 text-2xl font-bold text-white tracking-wide transition-all duration-300 group-hover:text-blue-500">
+            Project Dev Rush
+          </h1>
+        </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-        {['Timeline', 'Projects', 'Setup', 'FAQ'].map((item) => (
-          <motion.a
-            key={item}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            href={`#${item.toLowerCase()}`}
-            onClick={(event) => handleLinkClick(event, `#${item.toLowerCase()}`)}
-            className="text-white hover:text-blue-400 transition-colors"
-          >
-            {item}
-          </motion.a>
-        ))}
-      </div>
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-white md:hidden focus:outline-none transition-transform duration-300 hover:scale-110"
+        >
+          ☰
+        </button>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{
-          opacity: isOpen ? 1 : 0,
-          height: isOpen ? 'auto' : 0
-        }}
-        className="md:hidden bg-black/90 backdrop-blur-md fixed top-20 left-0 right-0 z-40"
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          {['Timeline', 'Projects', 'Setup', 'FAQ'].map((item) => (
-               <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              onClick={(event) => {
-                handleLinkClick(event, `#${item.toLowerCase()}`);
-                setIsOpen(false); // Close the mobile menu when a link is clicked
-              }}
-              className="block px-3 py-2 text-white hover:bg-blue-600/20 rounded-md"
-            >
-              {item}
-            </a>
+        {/* Navigation Links */}
+        <ul
+          className={`${
+            isOpen ? 'block' : 'hidden'
+          } absolute md:static top-16 left-0 w-full md:w-auto bg-black md:bg-transparent md:flex space-y-4 md:space-y-0 md:space-x-8 text-white shadow-lg md:shadow-none md:transition-none`}
+        >
+          {['#projects', '#timeline', '#setup', '#faq'].map((id, index) => (
+            <li key={index}>
+              <a
+                href={id}
+                onClick={(e) => handleLinkClick(e, id)}
+                className="hover:text-blue-500 transition-colors duration-300 text-lg tracking-wide"
+              >
+                {id.replace('#', '').toUpperCase()}
+              </a>
+            </li>
           ))}
-        </div>
-      </motion.div>
-    </motion.nav>
+        </ul>
+      </div>
+    </nav>
   );
 };
 
