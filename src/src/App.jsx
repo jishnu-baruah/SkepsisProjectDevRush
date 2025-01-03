@@ -7,6 +7,7 @@ import Timeline from './components/Timeline';
 import SetupRequirement from './components/SetupRequirement';
 import FAQ from './components/FAQ';
 import Communities from './components/Communities';
+import Resources from './components/Resources';
 
 // Event data
 const webDevEvents = [
@@ -140,6 +141,9 @@ const App = () => {
             <FAQ />
           </section>
         </div>
+
+        {/* Resources */}
+        <Resources/>
 
         {/* Communities Section */}
         <Communities />
