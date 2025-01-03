@@ -4,7 +4,7 @@ import { useCountdown } from '../hooks/useCountdown';
 import { ChevronDown } from 'lucide-react';
 
 const Hero = () => {
-  const timeLeft = useCountdown('2025-01-03T19:00:00+05:30');
+  const timeLeft = useCountdown('2025-01-04T19:00:00+05:30');
 
   const handleScrollToProjects = () => {
     const projectsSection = document.getElementById('projects');
